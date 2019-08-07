@@ -13,7 +13,7 @@ export default class BlockchainClient {
 
     async newStro() {
         let txHash = await this.dashboardContract.newStro();
-        console.log(txHash);
+        // console.log(txHash);
         return txHash.hash;
     }
 

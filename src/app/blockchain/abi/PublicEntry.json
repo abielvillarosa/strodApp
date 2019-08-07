@@ -1,0 +1,182 @@
+[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"name": "channelId",
+				"type": "uint256"
+			},
+			{
+				"name": "newNonce",
+				"type": "uint256"
+			},
+			{
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"name": "message",
+				"type": "string"
+			},
+			{
+				"name": "v",
+				"type": "uint8"
+			},
+			{
+				"name": "r",
+				"type": "bytes32"
+			},
+			{
+				"name": "s",
+				"type": "bytes32"
+			}
+		],
+		"name": "disputeRedemption",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"name": "channelId",
+				"type": "uint256"
+			},
+			{
+				"name": "_customer",
+				"type": "address"
+			}
+		],
+		"name": "newCustomerRedemptionChannelId",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "newStro",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"name": "channelId",
+				"type": "uint256"
+			}
+		],
+		"name": "stroPay",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"name": "channelId",
+				"type": "uint256"
+			},
+			{
+				"name": "_nonce",
+				"type": "uint256"
+			},
+			{
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"name": "message",
+				"type": "string"
+			},
+			{
+				"name": "v",
+				"type": "uint8"
+			},
+			{
+				"name": "r",
+				"type": "bytes32"
+			},
+			{
+				"name": "s",
+				"type": "bytes32"
+			}
+		],
+		"name": "stroRedeem",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"name": "channelId",
+				"type": "uint256"
+			}
+		],
+		"name": "stroStamping",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "_database",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"name": "channelId",
+				"type": "uint256"
+			}
+		],
+		"name": "multiChannel",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]

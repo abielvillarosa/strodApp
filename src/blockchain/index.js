@@ -8,13 +8,13 @@ export default class BlockchainClient {
         window.ethereum.enable()
         this.provider = new ethers.providers.Web3Provider(window.web3.currentProvider)
         this.signer = this.provider.getSigner()
-        this.dashboardContract = new ethers.Contract("0x6f13b580a686d464d7b0c2136fb8d0cc2c0d4413", PublicEntryABI, this.signer)
+        this.dashboardContract = new ethers.Contract("0xd6c2cbb9439d0fb901babc5403dc6eb6921e00a4", PublicEntryABI, this.signer)
     }
 
-    async newStro() {
-        let txHash = await this.dashboardContract.newStro();
+    async newStro(restoUid) {
+        let txHash = await this.dashboardContract.newStro(restoUid);
         // console.log(txHash);
-        return txHash.hash;
+        return txHash.from;
     }
 
     async newCustomerRedemptionChannelId(customerId, channelId, customerAddress) {

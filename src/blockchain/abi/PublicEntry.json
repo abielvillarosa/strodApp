@@ -65,7 +65,12 @@
 	},
 	{
 		"constant": false,
-		"inputs": [],
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
 		"name": "newStro",
 		"outputs": [],
 		"payable": false,

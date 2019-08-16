@@ -155,7 +155,7 @@ class Home extends Component {
           <NavLink to="/stroDapp/RestoHome" exact>
             <span><a class="button is-black" style={{width: 300}} onClick={() => this.setState({ open: true })}>Restaurant Owner</a></span>
           </NavLink>
-          <NavLink to="/stroDapp/CustomerHome" exact>
+          <NavLink to="/stroDapp/CustomerHome2" exact>
             <span><a class="button is-black" style={{width: 300}} onClick={() => this.setState({ open: true })}>Customer</a></span>
           </NavLink>
         </div>

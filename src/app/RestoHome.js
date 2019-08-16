@@ -23,7 +23,7 @@ const customStyles = {
 class RestoHome extends Component {
     constructor(props){
         super(props);
-        this.state = {open: false, redirect: false, result : '', txHash : '', restoUid: '', restoAddress: '', productName: '', requiredPts: '', customerAddress: '', earnedPts: ''};
+        this.state = {open: false, redirect: false, result : '', txHash : '', restoUid: '', restoAddress: '', productName: '', requiredPts: 0, customeruid: 0, customerAddress: '', earnedPts: 0};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleNewCust = this.handleNewCust.bind(this);
@@ -42,7 +42,8 @@ class RestoHome extends Component {
             // let productParam = {
             //     "restoUid": this.state.restoUid,
             // }
-            let productParam = 98
+            let productParam = this.state.restoUid
+            // let productParam = 98
             getProducts(productParam).then(res => {
                 console.log('getProducts', res)
             });
@@ -69,6 +70,7 @@ class RestoHome extends Component {
               console.log('restoUid', restoUid)
               console.log('customerUid', customerUid)
               console.log('customerAddress', customerAddress)
+              this.setState({customeruid: customerUid})
               let param = {
                 "restoUid": restoUid,
                 "customerUid": customerUid,
@@ -81,17 +83,23 @@ class RestoHome extends Component {
 
     handleStamp(e) {
         e.preventDefault()
+        let customerUid = this.state.customeruid
+            console.log('outside customerUid', customerUid)
         getCustomerUid().then(res => {
-            console.log('res.customeruid', res.customeruid);
+            // console.log('res.customeruid', res.customeruid);
             let restoUid = this.state.restoUid
+            console.log('res restoUid', restoUid )
             let restoAddress = this.state.restoAddress
-            let customerUid = res.customeruid
-            let earnedPts = this.state.earnedPts
-            let blockchainParam = {
-                from: restoAddress,
-                value: earnedPts
-            }
-            blockchain.stroStamping(restoUid, customerUid, blockchainParam).then(res => {
+            // let customerUid = res.customeruid
+            let customerUid = this.state.customeruid
+            console.log('inside customerUid', customerUid)
+            let earnedPts = parseInt(this.state.earnedPts)
+            console.log('earnedPts', earnedPts)
+            // let blockchainParam = {
+            //     value: earnedPts,
+            //     from: restoAddress            
+            // }
+            blockchain.stroStamping(restoUid, customerUid, earnedPts).then(res => {
               console.log('blockchainstampres',res);
               let param = {
                 "restoUid": restoUid,
@@ -152,7 +160,7 @@ class RestoHome extends Component {
                     <div className="field">
                         <label className="label">Required Points</label>
                         <div className="control">
-                            <input className="input" type="text" name="requiredPts" onChange={this.handleChange} required />
+                            <input className="input" type="number" name="requiredPts" onChange={this.handleChange} required />
                         </div>
                     </div>
                     </form>

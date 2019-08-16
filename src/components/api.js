@@ -83,3 +83,14 @@ export const earnStamp = async (param) => {
     console.log("get RestoUid", restoUid);
     return restoUid 
 }
+
+export const redeemPts = async (param) => {
+    const response = await fetch('http://localhost:5000/strodapp-backend/us-central1/redeemPts',{
+        method: "put",
+        mode: "cors",
+        body: JSON.stringify(param)
+    })
+    const restoUid = await response.json()
+    console.log("get RestoUid", restoUid);
+    return restoUid 
+}

@@ -25,7 +25,7 @@ export default class BlockchainClient {
     }
 
     async stroStamping(restoId, channelId, blockchainParam) {
-        let txHash = await this.dashboardContract.stroStamping(restoId, channelId).send(blockchainParam);
+        let txHash = await this.dashboardContract.stroStamping(restoId, channelId, {value: blockchainParam});
         console.log(txHash);
         return txHash.hash;
     }

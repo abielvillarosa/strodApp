@@ -95,8 +95,8 @@ class Home extends Component {
 
     render () {
       if (this.state.redirect) {
-        return <Redirect push to={{pathname: "/stroDapp/RestoHome", state: {result: (this.state.restoUid)}}}/>;
-        // return <Redirect push to={{pathname: "/stroDapp/CustomerHome"}}/>;
+        return <Redirect push to={{pathname: "/strodApp/RestoHome", state: {result: (this.state.restoUid)}}}/>;
+        // return <Redirect push to={{pathname: "/strodApp/CustomerHome"}}/>;
         }
 
     return (
@@ -152,10 +152,10 @@ class Home extends Component {
           </Typography>
           </div>
           <span><a class="button is-black" style={{width: 300}} onClick={() => this.setState({ registrationopen: true })}>Register as Restaurant</a></span>
-          <NavLink to="/stroDapp/RestoHome" exact>
+          <NavLink to="/strodApp/RestoHome" exact>
             <span><a class="button is-black" style={{width: 300}} onClick={() => this.setState({ open: true })}>Restaurant Owner</a></span>
           </NavLink>
-          <NavLink to="/stroDapp/CustomerHome2" exact>
+          <NavLink to="/strodApp/CustomerHome2" exact>
             <span><a class="button is-black" style={{width: 300}} onClick={() => this.setState({ open: true })}>Customer</a></span>
           </NavLink>
         </div>
@@ -179,7 +179,7 @@ class Home extends Component {
                       </form>
                 </section>
                 <footer class="modal-card-foot">
-                  <NavLink className="navbar-item" to="/stroDapp/RestoHome" activeClassName="is-active" exact>
+                  <NavLink className="navbar-item" to="/strodApp/RestoHome" activeClassName="is-active" exact>
                     <button className="button is-block is-info is-fullwidth" onClick={this.handleRegister}>Register</button>
                   </NavLink>
                   <button class="button" onClick={() => this.setState({ registrationopen: false })}>Cancel</button>

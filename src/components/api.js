@@ -1,5 +1,10 @@
+const devURL = 'http://localhost:5000/strodapp-backend/us-central1'
+const prdURL = 'https://us-central1-strodapp-backend.cloudfunctions.net'
+const flavor = 'dev'
+const baseUrl = flavor === 'dev' ? devURL : prdURL
+
 export const getMedia = async () => {
-    const response = await fetch('http://localhost:5000/strodapp-backend/us-central1/getStro',{
+    const response = await fetch(`${baseUrl}/getStro`,{
         method: "get",
         mode: "cors",
     })
@@ -9,7 +14,7 @@ export const getMedia = async () => {
 }
 
 export const getRestoUid = async () => {
-    const response = await fetch('http://localhost:5000/strodapp-backend/us-central1/getRestoUid',{
+    const response = await fetch(`${baseUrl}/getRestoUid`,{
         method: "get",
         mode: "cors",
     })
@@ -19,7 +24,7 @@ export const getRestoUid = async () => {
 }
 
 export const addNewResto = async (param) => {
-    const response = await fetch('http://localhost:5000/strodapp-backend/us-central1/addNewResto',{
+    const response = await fetch(`${baseUrl}/addNewResto`,{
         method: "post",
         mode: "cors",
         body: JSON.stringify(param)
@@ -30,7 +35,7 @@ export const addNewResto = async (param) => {
 }
 
 export const addNewProduct = async (param) => {
-    const response = await fetch('http://localhost:5000/strodapp-backend/us-central1/addNewProduct',{
+    const response = await fetch(`${baseUrl}/addNewProduct`,{
         method: "post",
         mode: "cors",
         body: JSON.stringify(param)
@@ -41,7 +46,7 @@ export const addNewProduct = async (param) => {
 }
 
 export const getProducts = async (param) => {
-    const response = await fetch(`http://localhost:5000/strodapp-backend/us-central1/getProducts?restoUid=${param}`,{
+    const response = await fetch(`${baseUrl}/getProducts?restoUid=${param}`,{
         method: "get",
         mode: "cors",
         // body: JSON.stringify(param)
@@ -53,7 +58,7 @@ export const getProducts = async (param) => {
 
 //Add from here
 export const getCustomerUid = async () => {
-    const response = await fetch('http://localhost:5000/strodapp-backend/us-central1/getCustomerUid',{
+    const response = await fetch(`${baseUrl}/getCustomerUid`,{
         method: "get",
         mode: "cors",
     })
@@ -63,7 +68,7 @@ export const getCustomerUid = async () => {
 }
 
 export const addNewCustomer = async (param) => {
-    const response = await fetch('http://localhost:5000/strodapp-backend/us-central1/addNewCustomer',{
+    const response = await fetch(`${baseUrl}/addNewCustomer`,{
         method: "post",
         mode: "cors",
         body: JSON.stringify(param)
@@ -74,7 +79,7 @@ export const addNewCustomer = async (param) => {
 }
 
 export const earnStamp = async (param) => {
-    const response = await fetch('http://localhost:5000/strodapp-backend/us-central1/earnStamp',{
+    const response = await fetch(`${baseUrl}/earnStamp`,{
         method: "put",
         mode: "cors",
         body: JSON.stringify(param)
@@ -85,7 +90,7 @@ export const earnStamp = async (param) => {
 }
 
 export const redeemPts = async (param) => {
-    const response = await fetch('http://localhost:5000/strodapp-backend/us-central1/redeemPts',{
+    const response = await fetch(`${baseUrl}/redeemPts`,{
         method: "put",
         mode: "cors",
         body: JSON.stringify(param)

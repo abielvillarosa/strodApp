@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a80a9ccfdf09f5364596522e1abc1b40",
+    "revision": "7fc4f3716fd873cbb0e91f2e0dbb3e50",
     "url": "/strodApp/index.html"
   },
   {
-    "revision": "c8af779c65eeed108b27",
+    "revision": "5aa0bd2b3ba275227f5d",
     "url": "/strodApp/static/css/main.06b2e58a.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/strodApp/static/js/2.89154525.chunk.js"
   },
   {
-    "revision": "c8af779c65eeed108b27",
-    "url": "/strodApp/static/js/main.c03815e8.chunk.js"
+    "revision": "5aa0bd2b3ba275227f5d",
+    "url": "/strodApp/static/js/main.c81a3649.chunk.js"
   },
   {
     "revision": "afcf99679b11dbf2652a",

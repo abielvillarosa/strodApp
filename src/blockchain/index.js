@@ -8,7 +8,8 @@ export default class BlockchainClient {
         window.ethereum.enable()
         this.provider = new ethers.providers.Web3Provider(window.web3.currentProvider)
         this.signer = this.provider.getSigner()
-        this.dashboardContract = new ethers.Contract("0xd6c2cbb9439d0fb901babc5403dc6eb6921e00a4", PublicEntryABI, this.signer)
+        // this.dashboardContract = new ethers.Contract("0xd6c2cbb9439d0fb901babc5403dc6eb6921e00a4", PublicEntryABI, this.signer)
+        this.dashboardContract = new ethers.Contract("0x729d5f93149e8e03851015a67c5fcde799ebc487", PublicEntryABI, this.signer)
     }
 
     async newStro(restoUid) {
@@ -17,14 +18,14 @@ export default class BlockchainClient {
         return txHash.from;
     }
 
-    async newCustomerRedemptionChannelId(customerId, channelId, customerAddress) {
-        let txHash = await this.dashboardContract.newCustomerRedemptionChannelId(customerId, channelId, customerAddress);
+    async newCustomerRedemptionChannelId(restoId, channelId, customerAddress) {
+        let txHash = await this.dashboardContract.newCustomerRedemptionChannelId(restoId, channelId, customerAddress);
         console.log(txHash);
         return txHash.hash;
     }
 
-    async stroStamping(customerId, channelId) {
-        let txHash = await this.dashboardContract.stroStamping(customerId, channelId);
+    async stroStamping(restoId, channelId, blockchainParam) {
+        let txHash = await this.dashboardContract.stroStamping(restoId, channelId).send(blockchainParam);
         console.log(txHash);
         return txHash.hash;
     }

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Button } from "react-bulma-components/full";
-import { NavLink } from 'react-router-dom';
+// import { Button } from "react-bulma-components/full";
+// import { NavLink } from 'react-router-dom';
 import { Modal } from 'react-bulma-components';
-import swoplogo from './images/logo.svg';
 import BlockchainClient from '../blockchain';
-import {getMedia} from '../components/api';
-import { getRestoUid, addNewProduct } from '../components/api';
+import { addNewProduct, getProducts, getCustomerUid, addNewCustomer, earnStamp } from '../components/api';
+import Gallery from './Gallery.js';
+import NavBar from './NavBar';
 
 const blockchain = new BlockchainClient();
 
@@ -23,9 +23,11 @@ const customStyles = {
 class RestoHome extends Component {
     constructor(props){
         super(props);
-        this.state = {open: false, redirect: false, result : '', txHash : '', restoUid: '', productName: '', requiredPts: ''};
+        this.state = {open: false, redirect: false, result : '', txHash : '', restoUid: '', restoAddress: '', productName: '', requiredPts: '', customerAddress: '', earnedPts: ''};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleNewCust = this.handleNewCust.bind(this);
+        this.handleStamp = this.handleStamp.bind(this);
       }
     
     handleSubmit(e){
@@ -36,39 +38,100 @@ class RestoHome extends Component {
             "productName": this.state.productName,
             "requiredPts": this.state.requiredPts
           }
-          addNewProduct(param)
+          addNewProduct(param).then(res => {
+            // let productParam = {
+            //     "restoUid": this.state.restoUid,
+            // }
+            let productParam = 98
+            getProducts(productParam).then(res => {
+                console.log('getProducts', res)
+            });
+          })
           this.setState({ open: false })
+          
+          
     }
 
     handleChange (evt) {
         evt.preventDefault()
         this.setState({ [evt.target.name]: evt.target.value });
-      }
+    }
+
+    handleNewCust(e) {
+        e.preventDefault()
+        getCustomerUid().then(res => {
+            console.log('res.customeruid', res.customeruid);
+            let restoUid = this.state.restoUid
+            let customerUid = res.customeruid
+            let customerAddress = this.state.customerAddress
+            blockchain.newCustomerRedemptionChannelId(restoUid, customerUid, customerAddress).then(res => {
+              console.log('blockchainres',res);
+              console.log('restoUid', restoUid)
+              console.log('customerUid', customerUid)
+              console.log('customerAddress', customerAddress)
+              let param = {
+                "restoUid": restoUid,
+                "customerUid": customerUid,
+                "customerAddress": customerAddress
+              }
+              addNewCustomer(param)
+            })
+        })
+    }
+
+    handleStamp(e) {
+        e.preventDefault()
+        getCustomerUid().then(res => {
+            console.log('res.customeruid', res.customeruid);
+            let restoUid = this.state.restoUid
+            let restoAddress = this.state.restoAddress
+            let customerUid = res.customeruid
+            let earnedPts = this.state.earnedPts
+            let blockchainParam = {
+                from: restoAddress,
+                value: earnedPts
+            }
+            blockchain.stroStamping(restoUid, customerUid, blockchainParam).then(res => {
+              console.log('blockchainstampres',res);
+              let param = {
+                "restoUid": restoUid,
+                "customerUid": customerUid,
+                "earnedPts": earnedPts
+              }
+              earnStamp(param)
+            })
+        })
+    }
 
     componentDidMount() {
-        getMedia();
         let restoUid = localStorage.getItem('restoUid');
-        console.log('restoUid2', restoUid)
-        this.setState({restoUid: restoUid})
-        let currRestoUid = this.state.restoUid
-        console.log('currRestoUid', currRestoUid)
+        let restoAddress = localStorage.getItem('restoAddress');
+        this.setState({restoUid: restoUid, restoAddress: restoAddress})
     }
 
     render () {
     return (
         <div>
-            <div class="column right">
-                {/* <NavLink className="navbar-item" to="/swop-amadeus/swopbooking" exact> */}
-                <span><a class="button" style={{width: 100}} onClick={() => this.setState({ open: true })}>Add Product</a></span>
-                {/* </NavLink> */}
-                {/* <figure class="navbar-item image has-text-white center">
-                  Sign In 
-                  <span class="icon is-large">
-                  <i class="fas fa-user" style={{width: 50 , height: 50 }}></i>
-                  </span>
-                </figure> */}
-                <span><a class="button" style={{width: 100}}>New Customer</a></span>
-                <span><a class="button" style={{width: 100}}>Stamp</a></span>
+            <NavBar />
+            <div class="columns">
+
+                <div>
+                    <div>
+                    Customer Address:
+                    <input className="input" type="text" name="customerAddress" onChange={this.handleChange} required />
+                    <a class="button is-black" style={{width: 150}} onClick={this.handleNewCust} is-primary>New Customer</a>
+                    <br />
+                    Required Points:
+                    <input className="input" type="text" name="earnedPts" onChange={this.handleChange} required />
+                    <a class="button is-black" style={{width: 150}} onClick={this.handleStamp}>Stamp</a>
+                    </div>
+                </div>
+                <div>
+                    <div className="button2">
+                    <span><a class="button is-black" style={{width: 100}} onClick={() => this.setState({ open: true })}>Add Product</a></span>
+                    </div>
+                    <Gallery></Gallery>
+                </div>
             </div>
             <Modal show={this.state.open} onClose={() => this.setState({ open: false })} style={customStyles}>
                 <div class="modal-background"></div>
@@ -95,9 +158,9 @@ class RestoHome extends Component {
                     </form>
             </section>
             <footer class="modal-card-foot">
-                <NavLink className="navbar-item" to="/swop-amadeus/postdetails" activeClassName="is-active" exact>
+                {/* <NavLink className="navbar-item" to="/swop-amadeus/postdetails" activeClassName="is-active" exact> */}
                 <button className="button is-block is-info is-fullwidth" onClick={this.handleSubmit}>Submit</button>
-                </NavLink>
+                {/* </NavLink> */}
                 <button class="button" onClick={() => this.setState({ open: false })}>Cancel</button>
             </footer>
                     </div>

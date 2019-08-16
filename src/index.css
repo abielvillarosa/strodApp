@@ -17,6 +17,40 @@ code {
   justify-content: center;
   align-items: center;
 }
+
+.columns, .button {
+  display: flex;
+  justify-content: left;
+  margin-top: 30px;
+  margin-left: 25px;
+  align-items: center;
+}
+
+.button {
+  justify-content: center;
+  text-align: center;
+  margin-left: 100px;
+}
+
+.button2 {
+  justify-content: center;
+  text-align: center;
+  margin-left: -75px;
+}
+
+.headingtext {
+  justify-content: center;
+  text-align: left;
+  margin-left: 100px;
+  margin-top: -75px;
+}
+
+.headingtext2 {
+  justify-content: center;
+  text-align: left;
+  margin-left: 25px;
+  margin-top: 25px;
+}
       
 .center-column {
   flex-direction: column;

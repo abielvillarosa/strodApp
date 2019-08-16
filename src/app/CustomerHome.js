@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Button } from "react-bulma-components/full";
+// import { Button } from "react-bulma-components/full";
 import { Box, Tile, Image, Heading } from "react-bulma-components/full";
 import { NavLink } from 'react-router-dom';
 import { Modal } from 'react-bulma-components';
-import swoplogo from './images/logo.svg';
 import coffee from './images/coffee.JPG';
 import bagel from './images/bagel.JPG';
 import wrap from './images/wrap.JPG';
@@ -11,7 +10,6 @@ import donuts from './images/donuts.JPG';
 import timbits from './images/timbits.JPG';
 import pastries from './images/pastries.JPG';
 import BlockchainClient from '../blockchain';
-import {getMedia} from '../components/api';
 import {getRestoUid} from '../components/api';
 
 const blockchain = new BlockchainClient();

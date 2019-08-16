@@ -39,3 +39,47 @@ export const addNewProduct = async (param) => {
     console.log("get RestoUid", restoUid);
     return restoUid 
 }
+
+export const getProducts = async (param) => {
+    const response = await fetch(`http://localhost:5000/strodapp-backend/us-central1/getProducts?restoUid=${param}`,{
+        method: "get",
+        mode: "cors",
+        // body: JSON.stringify(param)
+    })
+    const json = await response.json()
+    console.log("get Products", json);
+    return json 
+}
+
+//Add from here
+export const getCustomerUid = async () => {
+    const response = await fetch('http://localhost:5000/strodapp-backend/us-central1/getCustomerUid',{
+        method: "get",
+        mode: "cors",
+    })
+    const restoUid = await response.json()
+    console.log("get RestoUid", restoUid);
+    return restoUid 
+}
+
+export const addNewCustomer = async (param) => {
+    const response = await fetch('http://localhost:5000/strodapp-backend/us-central1/addNewCustomer',{
+        method: "post",
+        mode: "cors",
+        body: JSON.stringify(param)
+    })
+    const restoUid = await response.json()
+    console.log("get RestoUid", restoUid);
+    return restoUid 
+}
+
+export const earnStamp = async (param) => {
+    const response = await fetch('http://localhost:5000/strodapp-backend/us-central1/earnStamp',{
+        method: "put",
+        mode: "cors",
+        body: JSON.stringify(param)
+    })
+    const restoUid = await response.json()
+    console.log("get RestoUid", restoUid);
+    return restoUid 
+}

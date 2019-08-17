@@ -1,68 +1,32 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# StrØ decentralized Application
 
-## Available Scripts
+The StrØ decentralized application aims to lessen the use of straws by incentivizing customers who opt out for straws.
 
-In the project directory, you can run:
+### TestNet Deployment Details (Ropsten)
 
-### `npm start`
+#### stroFactory Contract Dashboard Deployment
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+   transaction hash:              0xb235ed35e24e8d3c3b811ddf72611890dbda57abf8e5b187b3676fc37afb13dc<br>
+   Dashboard contract address:    0x729d5f93149e8e03851015a67c5fcde799ebc487<br>
+   block number:                  6202635
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+#### Background
 
-### `npm test`
+In 2015, a video of a turtle with a plastic straw is stuck into its nostrils went viral. Since the released of the clip, there are several campaigns on the prevention of the use of the plastic straws. Plastics, in general, kills up to 1 million sea birds, 100,000 sea mammals, marine turtles, and fishes each year  
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Some of the countries have already implemented campaign towards non-use of plastic straws. In late 2018, several fastfood establishments and restaurants in Singapore has banned the use of plastic straw. But this effort has sparked backlash from some consumers who felt that they are inconvencienced.
 
-### `npm run build`
+To further this campaign and to entice consumers to say no to plastic straws especially when dining out, StrØ is a decentralized application to say “No to Straw.” This dApp will incentivize fastfood and restaurant customers, when they opt out from using plastic straws, with points which they can redeem to purchase for other food products on the catalogue for the restaurants / fast food where they earned their points.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+#### Decentralized applications
+  - Smart Contract developed on Solidity utilizing Factory Contract, State Channels, Signing and Verification
+  - Front-end developed using React, Bulma, Material-ui and deployed on GitHub pages
+  - Database using Firebase Function Hosting
+  - Back-End Repository: https://github.com/abielvillarosa/strodapp-backend
+  
+#### Workflow
+  - Restaurant user to click on "Register as Restaurant"
+  - Restaurant user to add new products to register products on the database
+  - Restaurant user to Add New Customer by providing customer EOA
+  - Restaurant user to Stamp points for customer
+  - Customer to redeem points based on specific product depending on points availability

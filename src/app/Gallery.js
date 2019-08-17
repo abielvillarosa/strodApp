@@ -4,13 +4,16 @@ import { getProducts } from '../components/api';
 import Product from './Products'
 
 class Gallery extends Component {
-    state = {
-        product: [], restoUid: ''
-    }
 
-    constructor() {
-        super()
-        this.getProducts()
+
+    constructor(props) {
+        super(props)
+        // this.getProducts()
+        console.log(props.products)
+        this.state = {
+            product : props.products,
+            restoUid: ''
+        }
     }
 
     componentDidMount() {
@@ -21,13 +24,7 @@ class Gallery extends Component {
     getProducts = () => {
         console.log('this.state.restoUid inside gallery', this.state.restoUid)
         getProducts(this.state.restoUid)
-        // getProducts(98)
         .then(response => {
-            // for(let i=0; i< response.length; i++){
-            //     console.log('inside array', response[i].productName);
-            //     let name = response[i].productName
-            //     this.setState({product: name})
-            // }
             this.setState({product: response})
             // console.log('inside getProducts', response)
             // this.setState({products: response.productName})
@@ -63,7 +60,10 @@ class Gallery extends Component {
                             margin="normal"
                             onChange={this.onSearchInputChange} /> */}
                         <Grid container spacing={20} style={{padding: 24}}>
+
+
                             { this.state.product.map(currentProduct => (
+            
                                 <Grid item xs={10} sm={6} lg={4} xl={2}>
                                     <Product product={currentProduct} />
                                 </Grid>

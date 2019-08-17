@@ -1,6 +1,6 @@
 const devURL = 'http://localhost:5000/strodapp-backend/us-central1'
 const prdURL = 'https://us-central1-strodapp-backend.cloudfunctions.net'
-const flavor = 'dev'
+const flavor = 'prod'
 const baseUrl = flavor === 'dev' ? devURL : prdURL
 
 export const getMedia = async () => {

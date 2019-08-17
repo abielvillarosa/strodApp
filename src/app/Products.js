@@ -5,6 +5,7 @@ import { Card, CardContent, Typography } from '@material-ui/core'
 const Product = (props) => {
     return(
         <div>
+            {console.log(props.product)}
           { props.product ? (
                 <Card>
                     {/* <CardMedia style={{height: 0, paddingTop: '56.25%', size:"small"}}

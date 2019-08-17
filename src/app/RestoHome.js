@@ -23,15 +23,18 @@ const customStyles = {
 class RestoHome extends Component {
     constructor(props){
         super(props);
-        this.state = {open: false, redirect: false, result : '', txHash : '', restoUid: '', restoAddress: '', productName: '', requiredPts: 0, customeruid: 0, customerAddress: '', earnedPts: 0};
+        this.state = {isLoading : false, open: false, redirect: false, product: [], result : '', txHash : '', restoUid: '', restoAddress: '', productName: '', requiredPts: 0, customeruid: 0, customerAddress: '', earnedPts: 0};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleNewCust = this.handleNewCust.bind(this);
         this.handleStamp = this.handleStamp.bind(this);
+        this.renderGallery = this.renderGallery.bind(this)
       }
+
+
     
     handleSubmit(e){
-        e.preventDefault()
+        // e.preventDefault()
 
         let param = {
             "restoUid": this.state.restoUid,
@@ -39,18 +42,26 @@ class RestoHome extends Component {
             "requiredPts": this.state.requiredPts
           }
           addNewProduct(param).then(res => {
-            // let productParam = {
-            //     "restoUid": this.state.restoUid,
-            // }
-            let productParam = this.state.restoUid
-            // let productParam = 98
-            getProducts(productParam).then(res => {
-                console.log('getProducts', res)
-            });
+            // let productParam = this.state.restoUid
+            this.getProducts()
           })
-          this.setState({ open: false })
-          
-          
+          this.setState({ open: false })          
+    }
+
+    getProducts = () => {
+        this.setState({isLoading : true})
+        let restoUid = localStorage.getItem('restoUid');
+        getProducts(restoUid)
+        // getProducts(98)
+        .then(response => {
+            this.setProducts(response)
+            // console.log('inside getProducts', response)
+            // this.setState({products: response.productName})
+        })
+        .catch((error) => {
+            console.log("Error occured while fetching data")
+            console.log(error)
+        })
     }
 
     handleChange (evt) {
@@ -111,12 +122,27 @@ class RestoHome extends Component {
         })
     }
 
-    componentDidMount() {
+    componentWillMount(){
         let restoUid = localStorage.getItem('restoUid');
+        console.log(restoUid)
         let restoAddress = localStorage.getItem('restoAddress');
         this.setState({restoUid: restoUid, restoAddress: restoAddress})
+        this.getProducts();
+    }
+    componentDidMount() {
+       
+      
     }
 
+    setProducts(response){
+        this.setState({product: response, isLoading : false})
+    }
+
+    renderGallery(){
+        return (
+            <Gallery products={this.state.product} />
+        )
+    }
     render () {
     return (
         <div>
@@ -138,7 +164,11 @@ class RestoHome extends Component {
                     <div className="button2">
                     <span><a class="button is-black" style={{width: 100}} onClick={() => this.setState({ open: true })}>Add Product</a></span>
                     </div>
-                    <Gallery></Gallery>
+                    {
+                        !this.state.isLoading ? this.renderGallery() : ""
+                    }
+                    {/* {console.log(this.state.product)}
+                    <Gallery products={this.state.product}/> */}
                 </div>
             </div>
             <Modal show={this.state.open} onClose={() => this.setState({ open: false })} style={customStyles}>

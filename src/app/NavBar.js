@@ -1,5 +1,6 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, makeStyles } from '@material-ui/core';
+import logo from './images/stro-logo.png';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -19,9 +20,10 @@ const NavBar = () => {
         <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <Typography variant="h6" className={classes.title}>
-              Stro
-            </Typography>
+          <img src= { logo } alt="logo" className={classes.logo}></img>
+            {/* <Typography variant="h6" className={classes.title}>
+              StrØ
+            </Typography> */}
             {/* <Button color="inherit">Login</Button> */}
           </Toolbar>
         </AppBar>

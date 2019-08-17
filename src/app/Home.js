@@ -142,7 +142,9 @@ class Home extends Component {
           </section> */}
 
         <div>
+          <div class="columns">
           <Video />
+          </div>
         </div>
         <div>
           <div class="headingtext">

@@ -20,7 +20,7 @@ To further this campaign and to entice consumers to say no to plastic straws esp
 
 #### Decentralized applications
   - Smart Contract developed on Solidity utilizing Factory Contract, State Channels, Signing and Verification
-  - Front-end developed using React, Bulma, Material-ui and deployed on GitHub pages
+  - Front-end developed using React, Bulma, Material-ui and deployed on GitHub pages (https://abielvillarosa.github.io/strodApp/)
   - Database using Firebase Function Hosting
   - Back-End Repository: https://github.com/abielvillarosa/strodapp-backend
   
